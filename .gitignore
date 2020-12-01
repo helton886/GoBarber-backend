@@ -5,3 +5,5 @@ dist
 yarn.lock
 .vscode
 .env
+tmp/*
+!tmp/.gitkeep
