@@ -7,3 +7,4 @@ yarn.lock
 .env
 tmp/*
 !tmp/.gitkeep
+coverage
