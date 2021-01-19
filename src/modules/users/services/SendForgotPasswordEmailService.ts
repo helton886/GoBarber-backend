@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-// import User from '@modules/users/infra/typeorm/entities/User';
+import path from 'path';
 import AppError from '@shared/errors/AppError';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import IUsersRepository from '../repositories/IUsersRepository';
@@ -27,6 +27,12 @@ export default class SendForgotPasswordEmailService {
     }
 
     const { token } = await this.userTokenRepository.generate(user.id);
+    const forgotPasswordTemplate = path.resolve(
+      __dirname,
+      '..',
+      'views',
+      'forgot_password.hbs',
+    );
     await this.mailProvider.sendMail({
       to: {
         name: user.name,
@@ -34,10 +40,10 @@ export default class SendForgotPasswordEmailService {
       },
       subject: '[Barberia] Recuperação de senha',
       templateData: {
-        template: 'Olá, {{name}}: {{token}}',
+        file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          token,
+          link: `http://localhost:3000/reset_password?token=${token}`,
         },
       },
     });

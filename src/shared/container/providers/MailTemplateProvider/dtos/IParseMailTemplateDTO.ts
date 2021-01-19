@@ -3,6 +3,6 @@ interface ITamplateVariables {
 }
 
 export default interface IParseMailTemplateDTO {
-  template: string;
+  file: string;
   variables: ITamplateVariables;
 }
