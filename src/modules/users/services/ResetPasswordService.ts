@@ -15,7 +15,6 @@ export default class ResetPasswordService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
-
     @inject('UserTokenRepository')
     private userTokenRepository: IUserTokenRepository,
     @inject('HashProvider')
