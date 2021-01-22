@@ -35,6 +35,7 @@ class UpdateProfile {
     }
 
     const userWithSameEmail = await this.usersRepository.findByEmail(email);
+
     if (userWithSameEmail && userWithSameEmail.id !== user_id) {
       throw new AppError('Email already in use.');
     }

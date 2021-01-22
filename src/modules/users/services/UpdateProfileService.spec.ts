@@ -8,7 +8,7 @@ let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
 let updateProfileService: UpdateProfileService;
 
-describe('UpdateUserAvatar', () => {
+describe('UpdateProfile', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeHashProvider = new FakeHashProvider();
@@ -95,6 +95,17 @@ describe('UpdateUserAvatar', () => {
     await expect(
       updateProfileService.execute({
         user_id: user.id,
+        name: 'Helton Alves',
+        email: 'helton1@gmail.com',
+        password: '123123',
+        oldPassword: '123123',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+  it(`should not be able to update an non existing user`, async () => {
+    await expect(
+      updateProfileService.execute({
+        user_id: 'non-existing-user',
         name: 'Helton Alves',
         email: 'helton1@gmail.com',
         password: '123123',
