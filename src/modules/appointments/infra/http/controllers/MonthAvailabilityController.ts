@@ -11,12 +11,12 @@ export default class MonthAvailabilityController {
       ListProviderMonthAvailabilityService,
     );
 
-    const appointment = await listProviderMonthAvailability.execute({
+    const appointments = await listProviderMonthAvailability.execute({
       month,
       provider_id,
       year,
     });
 
-    return response.json(appointment);
+    return response.json(appointments);
   }
 }
