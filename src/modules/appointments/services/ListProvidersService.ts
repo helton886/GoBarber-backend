@@ -1,6 +1,5 @@
 import { inject, injectable } from 'tsyringe';
 import User from '@modules/users/infra/typeorm/entities/User';
-import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
 interface IRequest {
@@ -18,10 +17,6 @@ class ListProviderService {
     const users = await this.usersRepository.findAllProviders({
       exceptUserId: user_id,
     });
-    if (!users) {
-      throw new AppError('User not found.');
-    }
-
     return users;
   }
 }
