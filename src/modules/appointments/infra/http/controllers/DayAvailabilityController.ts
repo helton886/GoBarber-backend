@@ -17,7 +17,6 @@ export default class DayAvailabilityController {
       month: Number(month),
       year: Number(year),
     });
-
     return response.json(appointments);
   }
 }
